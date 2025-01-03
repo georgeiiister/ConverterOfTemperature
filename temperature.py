@@ -59,4 +59,3 @@ class Temperature:
 
     def __str__(self):
         return f'temperature={self.__value} unit={self.__unit}'
-
