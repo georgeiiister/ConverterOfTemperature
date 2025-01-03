@@ -33,7 +33,7 @@ class Temperature:
     def convert(cls, value, source_unit:str, dest_unit:str):
         Temperature.exists_unit(source_unit, dest_unit)
         func_key = f'{source_unit.lower()}2{dest_unit.lower()}'
-        return cls.fk[func_key](value) #search function converting and run
+        return cls.func_key[func_key](value) #search function converting and run
 
     def __init__(self, value:Dec, unit:str):
         Temperature.exists_unit(unit)
