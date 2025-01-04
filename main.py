@@ -1,3 +1,4 @@
+from logging import exception
 from tkinter import *
 from tkinter.ttk import *
 from temperature import *
@@ -22,13 +23,16 @@ combo_units_dest.set('F')
 combo_units_dest.grid(row=2,column=2)
 
 def converting():
-    result = Temperature.convert(
-                                  value = source_temperature.get(),
-                                  source_unit = combo_units_source.get(),
-                                  dest_unit = combo_units_dest.get()
-                                )
-    dest_temperature.delete(0,END)
-    dest_temperature.insert(0,str(result))
+    try:
+        result = Temperature.convert(
+                                      value = source_temperature.get(),
+                                      source_unit = combo_units_source.get(),
+                                      dest_unit = combo_units_dest.get()
+                                    )
+        dest_temperature.delete(0,END)
+        dest_temperature.insert(0,str(result))
+    except Exception as Exc:
+        messagebox.showerror(title='Error',message = str(Exc))
 
 btn = Button(root,text='converting',command=converting)
 btn.grid(row=1,column=3)
